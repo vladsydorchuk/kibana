@@ -1,3 +1,17 @@
+import {
+    isCurrentSprint, 
+    getStartSprintDate,
+    showStartEndSpringDate,
+    getMateHours,
+    isWeekendDay,
+    isPastDay,
+    isTodayDay,
+    getMonthName,
+    getDateWithZeroTime,
+    getDayName,
+    findDuty
+} from './kibana-helper.js';
+
 getDataFromJSON();
 
 function getDataFromJSON() {
@@ -25,12 +39,12 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
+    // let today = new Date(2021, 2, 24);
     let today = new Date();
     let firstDay = startDateCalculation;
 
     let startSprintDate = getStartSprintDate(today, data.startSprintDate);
     let endSprintDate = new Date(startSprintDate.getFullYear(), startSprintDate.getMonth(), startSprintDate.getDate() + 14)
-
     showStartEndSpringDate(startSprintDate, endSprintDate);
 
     for(let i = 0; i < monthCount; i++) {
@@ -75,30 +89,9 @@ function generateMonthes(data, monthCount) {
             monthCount++;
             continue;
         }
+
         container.insertAdjacentHTML('beforeEnd', `<div class='calendar__item'>${monthTitle} ${daysTitle} ${dates}</div>`);
     }
-}
-
-function showStartEndSpringDate(start, end) {
-    const container = document.querySelector('.calendar__sprint');
-
-    container.insertAdjacentHTML('beforeEnd', `<p class='calendar__sprint-dates'>${start.toLocaleDateString()} - ${end.toLocaleDateString()}</p>`);
-}
-
-function isCurrentSprint(startDate, endDate, currentDate) {
-    return currentDate >= startDate && currentDate < endDate;
-}
-
-function getStartSprintDate(today, startSprintDate) {
-    let startDate = new Date(startSprintDate);
-
-    while (true) {
-        if (today < startDate.setDate(startDate.getDate() + 14)) {
-            break;
-        }
-    }
-    startDate.setDate(startDate.getDate() - 14);
-    return startDate;
 }
 
 let mateCounter = 0;
@@ -133,14 +126,6 @@ function getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday) 
     return bgcolor;
 }
 
-function getMateId(mates) {
-    return mates[(mateCounter - 1) % mates.length].id;
-}
-
-function getMateHours(id) {
-    return document.querySelectorAll(`[data-mate-id=${id}]`).length * 6;
-}
-
 function generateLegend(mates) {
     const container = document.querySelector('.calendar__teammates');
     container.insertAdjacentHTML('beforeEnd', mates.map(item => (
@@ -155,38 +140,6 @@ function generateLegend(mates) {
     )).join(''));
 }
 
-function isWeekendDay(date, dayOffs, workDays) {
-    let d = getDateWithZeroTime(date);
-    return workDays.indexOf(d) == -1 && (date.getDay() == 6 || date.getDay() == 0 || dayOffs.indexOf(d) != -1);
-}
-
-function isPastDay(today, date) {
-    return today > date;
-}
-
-function isTodayDay(today, date) {
-    return today.toLocaleDateString() == date.toLocaleDateString();
-}
-
-function getMonthName(date) {
-    return new Intl.DateTimeFormat('en-US', { month: "long" }).format(date);
-}
-
-function getDateWithZeroTime(date) {
-    return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T00:00:00`
-}
-
-function getDayName(date) {
-    return new Intl.DateTimeFormat('en-US', { weekday: "short" }).format(date);
-}
-
-function findDuty() {
-    let mateId = document.querySelector('.today').getAttribute('data-mate-id');
-
-    if (mateId == null) {
-        return;
-    }
-
-    let mateItem = document.querySelector(`.calendar__teammates-item[data-mate-id="${mateId}"]`);
-    mateItem.classList.toggle('calendar__teammates-item--duty')
+function getMateId(mates) {
+    return mates[(mateCounter - 1) % mates.length].id;
 }
