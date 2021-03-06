@@ -29,7 +29,7 @@
             "id": "ivan"
         },
         {
-            "name": "Serhii",
+            "name": "Sergii",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Sergii.jpg",
             "backgroundColor": "#9ef3e8",
             "dayOffs": [],
@@ -37,7 +37,7 @@
         },
         {
             "name": "No name",
-            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Sergii.jpg",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Default.jpg",
             "backgroundColor": "#f39e9e",
             "dayOffs": [],
             "id": "noname"

@@ -1,7 +1,7 @@
 getDataFromJSON();
 
 function getDataFromJSON() {
-    fetch('https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/data.json')
+    fetch('https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/settings.json')
         .then(response => {
             if (!response.ok) {
                 throw new Exception("HTTP error " + response.status);

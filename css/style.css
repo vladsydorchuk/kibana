@@ -23,7 +23,7 @@ body {
 
 .header {
   padding: 20px 0;
-  background-color: #eaeaea;
+  background: linear-gradient(to bottom, #bee2ff, #ffffff00);
 }
 
 .header__inner {
@@ -116,7 +116,7 @@ body {
 
 .calendar__teammates {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
 }
 
