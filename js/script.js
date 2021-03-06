@@ -24,7 +24,7 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
 
     // console.log(data);
-    let today = new Date(2021, 2, 7);
+    let today = new Date(2021, 2, 10);
     // let today = new Date();
     let firstDay = new Date()
     for(let i = 0; i < monthCount; i++) {
@@ -47,13 +47,18 @@ function generateMonthes(data, monthCount) {
                 daysTitle += `<p class='calendar__item-day-title'>${getDayName(currentDate)}</p>`;
             }
 
+            const isPast = isPastDay(today, currentDate);
+            const isWeekend = isWeekendDay(currentDate, data.dayOffs);
+            const isToday = isTodayDay(today, currentDate);
+
             dates += (currentDate.getMonth() != lastDay.getMonth()) 
             ? `<div class='calendar__item-day'></div>` 
             : `<div class='calendar__item-day 
-                ${isPastDay(today, currentDate) ? 'past-day' : ''} 
-                ${isWeekend(currentDate, data.dayOffs) ? 'weekend' : ''} 
-                ${isToday(today, currentDate) ? 'today' : ''}
-                '><span>${currentDate.getDate()}</span></div>`;
+                ${isPast ? 'past-day' : ''} 
+                ${isWeekend ? 'weekend' : ''} 
+                ${isToday ? 'today' : ''}
+                'style="background-color: ${getTeammateColor(data, currentDate, isPast, isWeekend, isToday)}"
+                ><span>${currentDate.getDate()}</span></div>`;
 
             currentDate.setDate(currentDate.getDate() + 1);
         }
@@ -61,6 +66,25 @@ function generateMonthes(data, monthCount) {
         container.insertAdjacentHTML('beforeEnd', `<div class='calendar__item'>${monthTitle} ${daysTitle} ${dates}</div>`);
         firstDay = new Date(lastDay.getFullYear(), lastDay.getMonth() + 1, 1);
     }
+}
+
+let teammateCounter = 0;
+function getTeammateColor(data, date, isPast, isWeekend, isToday) {
+    let bgcolor = "transparent";
+
+    if (isWeekend) {
+        return bgcolor;
+    }
+
+    if (isPast) {
+        return bgcolor + "7a";
+    }
+
+    if (!isWeekend) {
+        bgcolor = data.teammates[teammateCounter++ % data.teammates.length].backgroundColor;
+    }
+
+    return bgcolor; 
 }
 
 function generateLegend(teammates) {
@@ -74,7 +98,7 @@ function generateLegend(teammates) {
     )).join(''));
 }
 
-function isWeekend(date, dayOffs) {
+function isWeekendDay(date, dayOffs) {
     let d = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
     return date.getDay() == 6 || date.getDay() == 0 || dayOffs.indexOf(d) != -1;
 }
@@ -83,7 +107,7 @@ function isPastDay(today, date) {
     return today > date;
 }
 
-function isToday(today, date) {
+function isTodayDay(today, date) {
     return today.toLocaleDateString() == date.toLocaleDateString();
 }
 
