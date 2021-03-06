@@ -26,7 +26,7 @@ function generateMonthes(data, monthCount) {
     console.log(data.startDate);
 
     // console.log(data);
-    let today = new Date(2021, 2, 11);
+    let today = new Date(2021, 2, 10);
     // let today = new Date();
     // let firstDay = new Date(2021, 3, 11);
     let firstDay = new Date();
@@ -75,9 +75,6 @@ let teammateCounter = 0;
 function getTeammateColor(data, startDate, currentDate, isPast, isWeekend, isToday) {
     let bgcolor = "transparent";
 
-    // console.log(startDate);
-    // console.log(currentDate);
-    // console.log(startDate.getTime() > currentDate.getTime());
     if (startDate > currentDate) {
         return bgcolor;
     }
@@ -106,7 +103,7 @@ function generateLegend(teammates) {
 }
 
 function isWeekendDay(date, dayOffs) {
-    let d = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
+    let d = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T00:00:00`
     return date.getDay() == 6 || date.getDay() == 0 || dayOffs.indexOf(d) != -1;
 }
 
