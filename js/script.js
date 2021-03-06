@@ -27,7 +27,7 @@ function generateMonthes(data, monthCount) {
     // console.log(data);
     let today = new Date(2021, 2, 10);
     // let today = new Date();
-    // let firstDay = new Date(2021, 3, 11);
+    // let firstDay = new Date(2021, 3, 1);
     let firstDay = new Date();
     for(let i = 0; i < monthCount; i++) {
         firstDay = new Date(firstDay.getFullYear(), firstDay.getMonth(), 1);
@@ -95,7 +95,7 @@ function getTeammateColor(data, startDate, currentDate, isPast, isWeekend, isTod
     }
     
     teammateCounter++;
-    return bgcolor; //isPast ? bgcolor + "42" : bgcolor; 
+    return bgcolor;
 }
 
 function generateLegend(teammates) {
