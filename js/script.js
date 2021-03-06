@@ -22,11 +22,13 @@ function getDataFromJSON() {
 
 function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
+    const startDateCalculation = new Date(data.startDate);
 
     // console.log(data);
-    let today = new Date(2021, 2, 10);
+    let today = new Date(2021, 2, 11);
     // let today = new Date();
-    let firstDay = new Date()
+    // let firstDay = new Date(2021, 3, 11);
+    let firstDay = new Date();
     for(let i = 0; i < monthCount; i++) {
         firstDay = new Date(firstDay.getFullYear(), firstDay.getMonth(), 1);
         var lastDay = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 0);
@@ -57,7 +59,7 @@ function generateMonthes(data, monthCount) {
                 ${isPast ? 'past-day' : ''} 
                 ${isWeekend ? 'weekend' : ''} 
                 ${isToday ? 'today' : ''}
-                'style="background-color: ${getTeammateColor(data, currentDate, isPast, isWeekend, isToday)}"
+                'style="background-color: ${getTeammateColor(data, startDateCalculation, currentDate, isPast, isWeekend, isToday)}"
                 ><span>${currentDate.getDate()}</span></div>`;
 
             currentDate.setDate(currentDate.getDate() + 1);
@@ -69,22 +71,26 @@ function generateMonthes(data, monthCount) {
 }
 
 let teammateCounter = 0;
-function getTeammateColor(data, date, isPast, isWeekend, isToday) {
+function getTeammateColor(data, startDate, currentDate, isPast, isWeekend, isToday) {
     let bgcolor = "transparent";
+
+    console.log(startDate);
+    console.log(currentDate);
+    console.log(startDate.getTime() > currentDate.getTime());
+    if (startDate.toUTC > currentDate) {
+        return bgcolor;
+    }
 
     if (isWeekend) {
         return bgcolor;
     }
 
-    if (isPast) {
-        return bgcolor + "7a";
-    }
-
     if (!isWeekend) {
-        bgcolor = data.teammates[teammateCounter++ % data.teammates.length].backgroundColor;
+        bgcolor = data.teammates[teammateCounter % data.teammates.length].backgroundColor;
     }
-
-    return bgcolor; 
+    
+    teammateCounter++;
+    return isPast ? bgcolor + "7a" : bgcolor; 
 }
 
 function generateLegend(teammates) {

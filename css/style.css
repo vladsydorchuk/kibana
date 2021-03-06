@@ -136,7 +136,7 @@ body {
 }
 
 .past-day {
-  color: #c5c5c596;
+  color: #80808096;
 }
 
 .weekend {
@@ -175,7 +175,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .footer__item {
