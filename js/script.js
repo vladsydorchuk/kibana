@@ -25,8 +25,8 @@ function generateMonthes(data, monthCount) {
     const startDateCalculation = new Date(data.startDate);
 
     // console.log(data);
-    let today = new Date(2021, 2, 10);
-    // let today = new Date();
+    // let today = new Date(2021, 2, 10);
+    let today = new Date();
     // let firstDay = new Date(2021, 3, 1);
     let firstDay = new Date();
     for(let i = 0; i < monthCount; i++) {
@@ -39,7 +39,7 @@ function generateMonthes(data, monthCount) {
         let daysTitle = ``;
         let dates = ``;
         let count = 0;
-        for (let currentDate = firstDay; currentDate <= lastDay; ) {
+        for (let currentDate = firstDay; currentDate <= lastDay;) {
 
             if (count == 0) {
                 monthTitle = `<p class='calendar__item-title'>${getMonthName(lastDay)}</p>`;
@@ -76,22 +76,13 @@ function getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday) 
 
     let mate = data.teammates[mateCounter % data.teammates.length];
     let tmpCurrentDate = getDateWithZeroTime(currentDate);
-    // if (mate.dayOffs.indexOf(currentDate))
-    // console.log(currentDate);
-    // let mateDayOffs = mate.dayOffs;
-    // console.log(mateDayOffs);
 
     if (mate.dayOffs.indexOf(tmpCurrentDate) != -1) {
-        console.log("DAY OFF");
-        mateCounter++;
+        ++mateCounter;
         return getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday);
     }
 
-    if (startDate > currentDate) {
-        return bgcolor;
-    }
-
-    if (isWeekend) {
+    if (isWeekend || startDate > currentDate) {
         return bgcolor;
     }
 
@@ -111,10 +102,10 @@ function getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday) 
     return bgcolor;
 }
 
-function generateLegend(teammates) {
+function generateLegend(mates) {
     const container = document.querySelector('.calendar__teammates');
-    container.insertAdjacentHTML('beforeEnd', teammates.map(item => (
-        `<div class="calendar__teammates-item">
+    container.insertAdjacentHTML('beforeEnd', mates.map(item => (
+        `<div class="calendar__teammates-item data-mate-id='${item.id}'">
             <img class="calendar__teammates-img" src="${item.img}" alt="${item.name}">
             <span class="calendar__teammates-name">${item.name}</span>
             <div class="calendar__teammates-color" style="background-color: ${item.backgroundColor};"></div>

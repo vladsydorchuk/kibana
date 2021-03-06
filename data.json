@@ -7,7 +7,8 @@
             "backgroundColor": "#f39ede",
             "dayOffs": [
                 "2021-03-19T00:00:00"
-            ]
+            ],
+            "id": "nastia"
         },
         {
             "name": "Vlad",
@@ -17,31 +18,36 @@
             "dayOffs": [
                 "2021-03-17T00:00:00",
                 "2021-03-30T00:00:00"
-            ]
+            ],
+            "id": "vlad"
         },
         {
             "name": "Artem",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Artem.jpg",
             "color": "#e3e3e3",
             "backgroundColor": "#cef39e",
-            "dayOffs": []
+            "dayOffs": [],
+            "id": "artem"
         },
         {
             "name": "Ivan",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Ivan.jpg",
             "color": "#e3e3e3",
             "backgroundColor": "#9eabf3",
-            "dayOffs": []
+            "dayOffs": [],
+            "id": "ivan"
         },
         {
             "name": "Serhii",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Sergii.jpg",
             "color": "#e3e3e3",
             "backgroundColor": "#9ef3e8",
-            "dayOffs": []
+            "dayOffs": [],
+            "id": "sergii"
         }
     ],
     "startDate": "2021-03-01T00:00:00",
+    "startSprintDate": "2021-03-08T00:00:00",
     "dayOffs": [
         "2021-01-01T00:00:00",
         "2021-01-07T00:00:00",
