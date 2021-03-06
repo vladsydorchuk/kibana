@@ -3,7 +3,6 @@
         {
             "name": "Nastia",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Nastia.jpg",
-            "color": "#e3e3e3",
             "backgroundColor": "#f39ede",
             "dayOffs": [],
             "id": "nastia"
@@ -11,7 +10,6 @@
         {
             "name": "Vlad",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Vlad.jpg",
-            "color": "#e3e3e3",
             "backgroundColor": "#f3b69e",
             "dayOffs": [],
             "id": "vlad"
@@ -19,7 +17,6 @@
         {
             "name": "Artem",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Artem.jpg",
-            "color": "#e3e3e3",
             "backgroundColor": "#cef39e",
             "dayOffs": [],
             "id": "artem"
@@ -27,7 +24,6 @@
         {
             "name": "Ivan",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Ivan.jpg",
-            "color": "#e3e3e3",
             "backgroundColor": "#9eabf3",
             "dayOffs": [],
             "id": "ivan"
@@ -35,10 +31,16 @@
         {
             "name": "Serhii",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Sergii.jpg",
-            "color": "#e3e3e3",
             "backgroundColor": "#9ef3e8",
             "dayOffs": [],
             "id": "sergii"
+        },
+        {
+            "name": "No name",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Sergii.jpg",
+            "backgroundColor": "#f39e9e",
+            "dayOffs": [],
+            "id": "noname"
         }
     ],
     "startDate": "2021-03-01T00:00:00",

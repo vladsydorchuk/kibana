@@ -12,6 +12,7 @@ function getDataFromJSON() {
         .then(json => {
             generateMonthes(json, 2);
             generateLegend(json.teammates);
+            findDuty();
         })
         .catch(err => {
             console.error(err);
@@ -24,11 +25,9 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    let today = new Date(2021, 2, 10);
+    let today = new Date(2021, 2, 12);
     // let today = new Date();
     let firstDay = startDateCalculation;
-    // let firstDay = new Date();
-
 
     let startSprintDate = getStartSprintDate(today, data.startSprintDate);
     let endSprintDate = new Date(startSprintDate.getFullYear(), startSprintDate.getMonth(), startSprintDate.getDate() + 14)
@@ -140,7 +139,7 @@ function getMateHours(id) {
 function generateLegend(mates) {
     const container = document.querySelector('.calendar__teammates');
     container.insertAdjacentHTML('beforeEnd', mates.map(item => (
-        `<div data-mate-id='${item.id}' class="calendar__teammates-item ">
+        `<div data-mate-id='${item.id}' class="calendar__teammates-item">
             <img class="calendar__teammates-img" src="${item.img}" alt="${item.name}">
             <div class="calendar__teammates-info">
                 <span class="calendar__teammates-name">${item.name}</span>
@@ -165,7 +164,6 @@ function isTodayDay(today, date) {
 }
 
 function getMonthName(date) {
-    // console.log(date);
     return new Intl.DateTimeFormat('en-US', { month: "long" }).format(date);
 }
 
@@ -177,7 +175,19 @@ function getDayName(date) {
     return new Intl.DateTimeFormat('en-US', { weekday: "short" }).format(date);
 }
 
+function findDuty() {
+    let mateId = document.querySelector('.today').getAttribute('data-mate-id');
 
+    if (mateId == null) {
+        return;
+    }
+
+    //div[data-mate-id="${mateId}"
+    let mateItem = document.querySelector(`.calendar__teammates-item[data-mate-id="${mateId}"]`);
+    mateItem.classList.toggle('calendar__teammates-item--duty')
+    console.log(mateItem);
+    
+}
 
 
 
