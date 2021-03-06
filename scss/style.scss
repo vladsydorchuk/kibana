@@ -12,7 +12,7 @@ ul {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Righteous', cursive;
 }
 
 .container {
@@ -26,7 +26,6 @@ $accent-color-light: #199ad6;
 
 .header {
     padding: 20px 0;
-    // background-color: #eaeaea;
     background: linear-gradient(to bottom, #bee2ff, #ffffff00);
     min-height: 120px;
 
@@ -49,13 +48,13 @@ $accent-color-light: #199ad6;
     padding: 20px 0;
 
     &__sprint {
-        padding: 10px;
         margin-bottom: 10px;
         text-align: center;
 
         &-title {
             font-size: 24px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            font-family: 'Akaya Telivigala', cursive;
         }
     }
 
@@ -76,24 +75,20 @@ $accent-color-light: #199ad6;
     &__item {
         padding: 20px;
         display: grid;
-        grid-template-columns: repeat(7, minmax(50px, 1fr));
-        grid-auto-rows: minmax(50px, 1fr);
+        grid-template-columns: repeat(7, minmax(60px, 1fr));
+        grid-auto-rows: minmax(60px, 1fr);
         justify-items: center;
         align-items: center;
-
-        box-shadow: 10px 40px 50px rgba(229, 233, 246, 0.4);
+        box-shadow: 0px 50px 50px rgba(229, 233, 246, 0.4);
         border-radius: 20px;
 
         &-title {
             font-size: 22px;
-            font-family: 'Roboto Mono', monospace;;
-            font-weight: bold;
             grid-column: 1 / -1;
         }
 
         &-day-title {
-            font-weight: bold;
-            color:#084b81;
+            color: $accent-color-dark;
         }
 
         &-title,
@@ -108,7 +103,7 @@ $accent-color-light: #199ad6;
             width: 75%;
             height: 75%;
             border-radius: 50%;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         &:nth-child(odd) {
@@ -120,10 +115,8 @@ $accent-color-light: #199ad6;
         }
     }
 
-    
-
     &__legend {
-        padding: 30px 20px;
+        padding: 30px 20px 10px;
         max-width: 900px;
         text-align: center;
         margin: 0 auto;
@@ -131,6 +124,7 @@ $accent-color-light: #199ad6;
         &-title {
             font-size: 24px;
             margin-bottom: 20px;
+            font-family: 'Akaya Telivigala', cursive;
         }
      }
 
@@ -203,8 +197,6 @@ $accent-color-light: #199ad6;
     color: #199ad68e;
 }
 
-
-
 .today {
     width: 90%;
     height: 90%;
@@ -215,7 +207,7 @@ $accent-color-light: #199ad6;
 
 .footer {
     padding: 15px 0;
-    border-top: 1px solid rgba(134, 134, 134, 0.472);
+    border-top: 1px solid rgba(134, 134, 134, 0.198);
 
     &__inner {
         text-align: center;
@@ -246,6 +238,15 @@ $accent-color-light: #199ad6;
 
     &__copyright {
         font-size: 14px;
+    }
+}
+
+@media (max-width: 990px) {
+    .calendar {
+        &__item {
+            grid-template-columns: repeat(7, minmax(50px, 1fr));
+            grid-auto-rows: minmax(50px, 1fr);
+        }
     }
 }
 

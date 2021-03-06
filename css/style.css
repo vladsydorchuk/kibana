@@ -12,7 +12,7 @@ ul {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Righteous', cursive;
 }
 
 .container {
@@ -46,14 +46,14 @@ body {
 }
 
 .calendar__sprint {
-  padding: 10px;
   margin-bottom: 10px;
   text-align: center;
 }
 
 .calendar__sprint-title {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-family: 'Akaya Telivigala', cursive;
 }
 
 .calendar__grid {
@@ -73,23 +73,20 @@ body {
 .calendar__item {
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(7, minmax(50px, 1fr));
-  grid-auto-rows: minmax(50px, 1fr);
+  grid-template-columns: repeat(7, minmax(60px, 1fr));
+  grid-auto-rows: minmax(60px, 1fr);
   justify-items: center;
   align-items: center;
-  box-shadow: 10px 40px 50px rgba(229, 233, 246, 0.4);
+  box-shadow: 0px 50px 50px rgba(229, 233, 246, 0.4);
   border-radius: 20px;
 }
 
 .calendar__item-title {
   font-size: 22px;
-  font-family: 'Roboto Mono', monospace;
-  font-weight: bold;
   grid-column: 1 / -1;
 }
 
 .calendar__item-day-title {
-  font-weight: bold;
   color: #084b81;
 }
 
@@ -103,7 +100,7 @@ body {
   width: 75%;
   height: 75%;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .calendar__item:nth-child(odd) {
@@ -115,7 +112,7 @@ body {
 }
 
 .calendar__legend {
-  padding: 30px 20px;
+  padding: 30px 20px 10px;
   max-width: 900px;
   text-align: center;
   margin: 0 auto;
@@ -124,6 +121,7 @@ body {
 .calendar__legend-title {
   font-size: 24px;
   margin-bottom: 20px;
+  font-family: 'Akaya Telivigala', cursive;
 }
 
 .calendar__teammates {
@@ -202,7 +200,7 @@ body {
 
 .footer {
   padding: 15px 0;
-  border-top: 1px solid rgba(134, 134, 134, 0.472);
+  border-top: 1px solid rgba(134, 134, 134, 0.198);
 }
 
 .footer__inner {
@@ -235,6 +233,13 @@ body {
 
 .footer__copyright {
   font-size: 14px;
+}
+
+@media (max-width: 990px) {
+  .calendar__item {
+    grid-template-columns: repeat(7, minmax(50px, 1fr));
+    grid-auto-rows: minmax(50px, 1fr);
+  }
 }
 
 @media (max-width: 870px) {

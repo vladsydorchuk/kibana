@@ -25,8 +25,7 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    let today = new Date(2021, 2, 12);
-    // let today = new Date();
+    let today = new Date();
     let firstDay = startDateCalculation;
 
     let startSprintDate = getStartSprintDate(today, data.startSprintDate);
@@ -93,14 +92,12 @@ function isCurrentSprint(startDate, endDate, currentDate) {
 function getStartSprintDate(today, startSprintDate) {
     let startDate = new Date(startSprintDate);
 
-    // console.log(today);
     while (true) {
         if (today < startDate.setDate(startDate.getDate() + 14)) {
             break;
         }
     }
     startDate.setDate(startDate.getDate() - 14);
-    // console.log(`Start: ${startDate}`);
     return startDate;
 }
 
@@ -190,69 +187,6 @@ function findDuty() {
         return;
     }
 
-    //div[data-mate-id="${mateId}"
     let mateItem = document.querySelector(`.calendar__teammates-item[data-mate-id="${mateId}"]`);
     mateItem.classList.toggle('calendar__teammates-item--duty')
-    console.log(mateItem);
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-// var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-
-
-// let days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-
-
-
-
-// generateMonth(date);
-// function generateMonth(date) {
-//     var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-//     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-
-//     let month = 
-//     `<div class="calendar__item">
-//         <h3 class="calendar__item-title">Март</h3>
-//         <div class="calendar__item-days-name">
-//             ${days.map(day => (
-//                 `<p>${day}</p>`
-//             )).join('')}
-//         </div>
-//         <div class="calendar__item-days">
-//             ${getDates()}
-//         </div>
-//     </div>
-//     `;
-
-//     grid.innerHTML += month;
-// }
-
-// function getDates() {
-//     return `<p>test</p>`;
-// }
