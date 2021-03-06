@@ -23,7 +23,6 @@ function getDataFromJSON() {
 function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
-    console.log(data.startDate);
 
     // console.log(data);
     let today = new Date(2021, 2, 10);
