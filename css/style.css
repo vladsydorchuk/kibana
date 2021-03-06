@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  max-width: 1230px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.header {
+  padding: 20px 0;
+  background-color: #eaeaea;
+}
+
+.header__inner {
+  text-align: center;
+}
+
+.calendar {
+  padding: 20px 0;
+}
+
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.calendar__title {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.calendar__item {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(7, 50px);
+  grid-auto-rows: 50px;
+  align-items: center;
+  justify-items: center;
+  box-shadow: 10px 40px 50px rgba(229, 233, 246, 0.4);
+  border-radius: 20px;
+}
+
+.weekend {
+  color: #199ad6;
+}
+
+.footer {
+  padding: 20px 0;
+  background-color: #eaeaea;
+}
+
+.footer__inner {
+  text-align: center;
+}
+
+.footer__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer__item {
+  margin-right: 10px;
+}
+
+.footer__item:last-child {
+  margin-right: 0;
+}
+
+.footer__item-img {
+  width: 36px;
+}
+
+.footer__copyright {
+  font-size: 14px;
+}

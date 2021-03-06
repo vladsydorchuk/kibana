@@ -1,0 +1,36 @@
+{
+    "teammates": [
+        {
+            "name": "Nastia",
+            "color": "#e3e3e3",
+            "background-color": "#e3e3e3",
+            "dayOffs": [
+                "2021/03/08",
+                "2021/03/09"
+            ]
+        },
+        {
+            "name": "Vlad",
+            "color": "#e3e3e3",
+            "background-color": "#e3e3e3"
+        },
+        {
+            "name": "Artem",
+            "color": "#e3e3e3",
+            "background-color": "#e3e3e3"
+        },
+        {
+            "name": "Ivan",
+            "color": "#e3e3e3",
+            "background-color": "#e3e3e3"
+        },
+        {
+            "name": "Serhii",
+            "color": "#e3e3e3",
+            "background-color": "#e3e3e3"
+        }
+    ],
+    "dayOffs": [
+        "2021/03/08"
+    ]
+}
