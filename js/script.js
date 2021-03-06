@@ -23,6 +23,7 @@ function getDataFromJSON() {
 function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
+    console.log(data.startDate);
 
     // console.log(data);
     let today = new Date(2021, 2, 11);
@@ -74,10 +75,10 @@ let teammateCounter = 0;
 function getTeammateColor(data, startDate, currentDate, isPast, isWeekend, isToday) {
     let bgcolor = "transparent";
 
-    console.log(startDate);
-    console.log(currentDate);
-    console.log(startDate.getTime() > currentDate.getTime());
-    if (startDate.toUTC > currentDate) {
+    // console.log(startDate);
+    // console.log(currentDate);
+    // console.log(startDate.getTime() > currentDate.getTime());
+    if (startDate > currentDate) {
         return bgcolor;
     }
 
