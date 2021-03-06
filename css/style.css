@@ -72,6 +72,7 @@ body {
 
 .calendar__item-title {
   font-size: 22px;
+  font-family: 'Roboto Mono', monospace;
   font-weight: bold;
   grid-column: 1 / -1;
 }
@@ -88,9 +89,10 @@ body {
 }
 
 .calendar__item-day {
-  width: 80%;
-  height: 80%;
+  width: 75%;
+  height: 75%;
   border-radius: 50%;
+  font-size: 16px;
 }
 
 .calendar__legend {
@@ -150,16 +152,9 @@ body {
 .today {
   font-weight: bold;
   position: relative;
-}
-
-.today::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  bottom: 8px;
-  height: 2px;
-  background-color: #084b81;
-  border-radius: 15px;
+  border: 1px solid #084b81;
+  width: 90%;
+  height: 90%;
 }
 
 .footer {

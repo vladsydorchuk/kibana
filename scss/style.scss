@@ -74,6 +74,7 @@ $accent-color-light: #084b81;
 
         &-title {
             font-size: 22px;
+            font-family: 'Roboto Mono', monospace;;
             font-weight: bold;
             grid-column: 1 / -1;
         }
@@ -92,9 +93,10 @@ $accent-color-light: #084b81;
         }
 
         &-day {
-            width: 80%;
-            height: 80%;
+            width: 75%;
+            height: 75%;
             border-radius: 50%;
+            font-size: 16px;
         }
     }
 
@@ -157,16 +159,21 @@ $accent-color-light: #084b81;
 .today {
     font-weight: bold;
     position: relative;
+    border: 1px solid $accent-color-dark;
+    // color: $accent-color-dark;
+    width: 90%;
+    height: 90%;
+    // font-size: 18px;
 
-    &::after {
-        content: "";
-        position: absolute;
-        width: 20px;
-        bottom: 8px;
-        height: 2px;
-        background-color: $accent-color-dark;
-        border-radius: 15px;
-    }
+    // &::after {
+    //     content: "";
+    //     position: absolute;
+    //     width: 20px;
+    //     bottom: 8px;
+    //     height: 2px;
+    //     background-color: $accent-color-dark;
+    //     border-radius: 15px;
+    // }
 }
 
 .footer {

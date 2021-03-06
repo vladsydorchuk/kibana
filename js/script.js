@@ -87,7 +87,7 @@ function getTeammateColor(data, startDate, currentDate, isPast, isWeekend, isTod
     }
     
     teammateCounter++;
-    return isPast ? bgcolor + "7a" : bgcolor; 
+    return isPast ? bgcolor + "42" : bgcolor; 
 }
 
 function generateLegend(teammates) {
