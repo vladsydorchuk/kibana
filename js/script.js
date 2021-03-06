@@ -69,13 +69,9 @@ function generateLegend(teammates) {
         `<div class="calendar__teammates-item">
             <img class="calendar__teammates-img" src="${item.img}" alt="${item.name}">
             <span class="calendar__teammates-name">${item.name}</span>
-            <div class="calendar__teammates-color" style="background-color: ${item["background-color"]};"></div>
+            <div class="calendar__teammates-color" style="background-color: ${item.backgroundColor};"></div>
         </div>`
     )).join(''));
-
-    // `<div class='calendar__item'>${monthTitle} ${daysTitle} ${dates}</div>`
-
-    console.log(teammates);
 }
 
 function isWeekend(date, dayOffs) {
