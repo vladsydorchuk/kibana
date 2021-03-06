@@ -50,7 +50,7 @@ function generateMonthes(data, monthCount) {
             }
 
             const isPast = isPastDay(today, currentDate);
-            const isWeekend = isWeekendDay(currentDate, data.dayOffs);
+            const isWeekend = isWeekendDay(currentDate, data.dayOffs, data.workDays);
             const isToday = isTodayDay(today, currentDate);
 
             dates += (currentDate.getMonth() != lastDay.getMonth()) 
@@ -109,9 +109,9 @@ function generateLegend(teammates) {
     )).join(''));
 }
 
-function isWeekendDay(date, dayOffs) {
+function isWeekendDay(date, dayOffs, workDays) {
     let d = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T00:00:00`
-    return date.getDay() == 6 || date.getDay() == 0 || dayOffs.indexOf(d) != -1;
+    return workDays.indexOf(d) == -1 && (date.getDay() == 6 || date.getDay() == 0 || dayOffs.indexOf(d) != -1);
 }
 
 function isPastDay(today, date) {
