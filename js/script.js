@@ -32,6 +32,8 @@ function generateMonthes(data, monthCount) {
     let startSprintDate = getStartSprintDate(today, data.startSprintDate);
     let endSprintDate = new Date(startSprintDate.getFullYear(), startSprintDate.getMonth(), startSprintDate.getDate() + 14)
 
+    showStartEndSpringDate(startSprintDate, endSprintDate);
+
     for(let i = 0; i < monthCount; i++) {
         firstDay = new Date(firstDay.getFullYear(), firstDay.getMonth(), 1);
         var lastDay = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 0);
@@ -76,6 +78,12 @@ function generateMonthes(data, monthCount) {
         }
         container.insertAdjacentHTML('beforeEnd', `<div class='calendar__item'>${monthTitle} ${daysTitle} ${dates}</div>`);
     }
+}
+
+function showStartEndSpringDate(start, end) {
+    const container = document.querySelector('.calendar__sprint');
+
+    container.insertAdjacentHTML('beforeEnd', `<p class='calendar__sprint-dates'>${start.toLocaleDateString()} - ${end.toLocaleDateString()}</p>`);
 }
 
 function isCurrentSprint(startDate, endDate, currentDate) {

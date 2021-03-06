@@ -34,14 +34,14 @@
             "backgroundColor": "#9ef3e8",
             "dayOffs": [],
             "id": "sergii"
-        },
-        {
-            "name": "No name",
-            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Default.jpg",
-            "backgroundColor": "#f39e9e",
-            "dayOffs": [],
-            "id": "noname"
         }
+        // {
+        //     "name": "No name",
+        //     "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Default.jpg",
+        //     "backgroundColor": "#f39e9e",
+        //     "dayOffs": [],
+        //     "id": "noname"
+        // }
     ],
     "startDate": "2021-03-01T00:00:00",
     "startSprintDate": "2021-03-08T00:00:00",
