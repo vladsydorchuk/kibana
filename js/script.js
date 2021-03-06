@@ -24,7 +24,7 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    let today = new Date(2021, 3, 22);
+    let today = new Date(2021, 2, 10);
     // let today = new Date();
     let firstDay = startDateCalculation;
     // let firstDay = new Date();
@@ -37,15 +37,6 @@ function generateMonthes(data, monthCount) {
         firstDay = new Date(firstDay.getFullYear(), firstDay.getMonth(), 1);
         var lastDay = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 0);
 
-        // console.log(today.getMonth());
-        // console.log(firstDay.getMonth());
-        if (today.getMonth() > firstDay.getMonth()) {
-            mateCounter += getWorkDaysWithDayOffsForMates(firstDay, data.teammates);
-            monthCount++;
-            firstDay = new Date(lastDay.getFullYear(), lastDay.getMonth() + 1, 1);
-            continue;
-        }
-
         firstDay.setDate(firstDay.getDate() - firstDay.getDay() + 1);
         
         let monthTitle = ``
@@ -54,7 +45,7 @@ function generateMonthes(data, monthCount) {
         let count = 0;
         for (let currentDate = firstDay; currentDate <= lastDay;) {
             if (count == 0) {
-                monthTitle = `<p class='calendar__item-title'>${getMonthName(lastDay)}</p>`;
+                monthTitle = `<p class='calendar__item-title'>${getMonthName(lastDay) + " " + lastDay.getFullYear()}</p>`;
             }
 
             if (++count <= 7) {
@@ -78,29 +69,14 @@ function generateMonthes(data, monthCount) {
             currentDate.setDate(currentDate.getDate() + 1);
         }
 
-        container.insertAdjacentHTML('beforeEnd', `<div class='calendar__item'>${monthTitle} ${daysTitle} ${dates}</div>`);
         firstDay = new Date(lastDay.getFullYear(), lastDay.getMonth() + 1, 1);
+        
+        if (today > firstDay) {
+            monthCount++;
+            continue;
+        }
+        container.insertAdjacentHTML('beforeEnd', `<div class='calendar__item'>${monthTitle} ${daysTitle} ${dates}</div>`);
     }
-}
-
-function getWorkDaysWithDayOffsForMates(date, mates) {
-    console.log(getDateWithZeroTime(date));
-    let month = date.getMonth();
-    let days = [];
-    
-    mates.forEach(mate => {
-        let mateDayOff = mate.dayOffs.filter(date => {
-            return new Date(date).getMonth() == month;
-        });
-        console.log(mateDayOff);
-    });
-    
-    
-    
-    
-
-    console.log(days);
-    return 0;
 }
 
 function isCurrentSprint(startDate, endDate, currentDate) {
@@ -189,7 +165,8 @@ function isTodayDay(today, date) {
 }
 
 function getMonthName(date) {
-    return  new Intl.DateTimeFormat('en-US', { month: "long" }).format(date);
+    // console.log(date);
+    return new Intl.DateTimeFormat('en-US', { month: "long" }).format(date);
 }
 
 function getDateWithZeroTime(date) {
