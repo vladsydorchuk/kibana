@@ -83,6 +83,8 @@ function getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday) 
 
     if (mate.dayOffs.indexOf(tmpCurrentDate) != -1) {
         console.log("DAY OFF");
+        mateCounter++;
+        return getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday);
     }
 
     if (startDate > currentDate) {
