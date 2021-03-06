@@ -24,14 +24,27 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    // console.log(data);
-    // let today = new Date(2021, 2, 10);
-    let today = new Date();
-    // let firstDay = new Date(2021, 3, 1);
-    let firstDay = new Date();
+    let today = new Date(2021, 3, 22);
+    // let today = new Date();
+    let firstDay = startDateCalculation;
+    // let firstDay = new Date();
+
+
+    let startSprintDate = getStartSprintDate(today, data.startSprintDate);
+    let endSprintDate = new Date(startSprintDate.getFullYear(), startSprintDate.getMonth(), startSprintDate.getDate() + 14)
+
     for(let i = 0; i < monthCount; i++) {
         firstDay = new Date(firstDay.getFullYear(), firstDay.getMonth(), 1);
         var lastDay = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 0);
+
+        // console.log(today.getMonth());
+        // console.log(firstDay.getMonth());
+        if (today.getMonth() > firstDay.getMonth()) {
+            mateCounter += getWorkDaysWithDayOffsForMates(firstDay, data.teammates);
+            monthCount++;
+            firstDay = new Date(lastDay.getFullYear(), lastDay.getMonth() + 1, 1);
+            continue;
+        }
 
         firstDay.setDate(firstDay.getDate() - firstDay.getDay() + 1);
         
@@ -40,7 +53,6 @@ function generateMonthes(data, monthCount) {
         let dates = ``;
         let count = 0;
         for (let currentDate = firstDay; currentDate <= lastDay;) {
-
             if (count == 0) {
                 monthTitle = `<p class='calendar__item-title'>${getMonthName(lastDay)}</p>`;
             }
@@ -55,11 +67,12 @@ function generateMonthes(data, monthCount) {
 
             dates += (currentDate.getMonth() != lastDay.getMonth()) 
             ? `<div class='calendar__item-day'></div>` 
-            : `<div class='calendar__item-day 
-                ${isPast ? 'past-day' : ''} 
-                ${isWeekend ? 'weekend' : ''} 
-                ${isToday ? 'today' : ''}
-                'style="background-color: ${getMateColor(data, startDateCalculation, currentDate, isPast, isWeekend, isToday)}"
+            : `<div class='calendar__item-day
+                ${isPast ? ' past-day' : ''}
+                ${isWeekend ? ' weekend' : ''}
+                ${isToday ? ' today' : ''}
+                'style="background-color: ${getMateColor(data, startDateCalculation, currentDate, isPast, isWeekend, isToday)}" 
+                ${isCurrentSprint(startSprintDate, endSprintDate, currentDate) && !isWeekend ? `data-mate-id=${getMateId(data.teammates)}` : ''}
                 ><span>${currentDate.getDate()}</span></div>`;
 
             currentDate.setDate(currentDate.getDate() + 1);
@@ -68,6 +81,44 @@ function generateMonthes(data, monthCount) {
         container.insertAdjacentHTML('beforeEnd', `<div class='calendar__item'>${monthTitle} ${daysTitle} ${dates}</div>`);
         firstDay = new Date(lastDay.getFullYear(), lastDay.getMonth() + 1, 1);
     }
+}
+
+function getWorkDaysWithDayOffsForMates(date, mates) {
+    console.log(getDateWithZeroTime(date));
+    let month = date.getMonth();
+    let days = [];
+    
+    mates.forEach(mate => {
+        let mateDayOff = mate.dayOffs.filter(date => {
+            return new Date(date).getMonth() == month;
+        });
+        console.log(mateDayOff);
+    });
+    
+    
+    
+    
+
+    console.log(days);
+    return 0;
+}
+
+function isCurrentSprint(startDate, endDate, currentDate) {
+    return currentDate >= startDate && currentDate < endDate;
+}
+
+function getStartSprintDate(today, startSprintDate) {
+    let startDate = new Date(startSprintDate);
+
+    // console.log(today);
+    while (true) {
+        if (today < startDate.setDate(startDate.getDate() + 14)) {
+            break;
+        }
+    }
+    startDate.setDate(startDate.getDate() - 14);
+    // console.log(`Start: ${startDate}`);
+    return startDate;
 }
 
 let mateCounter = 0;
@@ -102,12 +153,23 @@ function getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday) 
     return bgcolor;
 }
 
+function getMateId(mates) {
+    return mates[(mateCounter - 1) % mates.length].id;
+}
+
+function getMateHours(id) {
+    return document.querySelectorAll(`[data-mate-id=${id}]`).length * 6;
+}
+
 function generateLegend(mates) {
     const container = document.querySelector('.calendar__teammates');
     container.insertAdjacentHTML('beforeEnd', mates.map(item => (
-        `<div class="calendar__teammates-item data-mate-id='${item.id}'">
+        `<div data-mate-id='${item.id}' class="calendar__teammates-item ">
             <img class="calendar__teammates-img" src="${item.img}" alt="${item.name}">
-            <span class="calendar__teammates-name">${item.name}</span>
+            <div class="calendar__teammates-info">
+                <span class="calendar__teammates-name">${item.name}</span>
+                <span class="calendar__teammates-hours">${getMateHours(item.id)}</span>
+            </div>
             <div class="calendar__teammates-color" style="background-color: ${item.backgroundColor};"></div>
         </div>`
     )).join(''));
@@ -133,7 +195,6 @@ function getMonthName(date) {
 function getDateWithZeroTime(date) {
     return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T00:00:00`
 }
-
 
 function getDayName(date) {
     return new Intl.DateTimeFormat('en-US', { weekday: "short" }).format(date);

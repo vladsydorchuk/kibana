@@ -139,8 +139,21 @@ $accent-color-light: #084b81;
             margin-right: 10px;
         }
 
-        &-name {
+        &-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
             margin-right: 10px;
+        }
+
+        &-name {
+            margin-bottom: 5px;
+        }
+
+        &-hours {
+            font-size: 13px;
         }
 
         &-color {
