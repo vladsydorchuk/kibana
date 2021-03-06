@@ -16,9 +16,9 @@ body {
 }
 
 .container {
-    max-width: 830px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 20px;
 }
 
 $accent-color-dark: #084b81;
@@ -34,10 +34,10 @@ $accent-color-light: #084b81;
 
     &__logo {
         margin-right: 15px;
-        height: 32px;
+        // height: 32px;
 
         &-text {
-            font-size: 40px;
+            font-size: 50px;
             font-weight: bold;
             color:#084b81;
         }
@@ -50,7 +50,7 @@ $accent-color-light: #084b81;
     &__grid {
         display: grid;
         gap: 20px;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         justify-items: center;
         align-items: flex-start;
     }
@@ -64,8 +64,8 @@ $accent-color-light: #084b81;
     &__item {
         padding: 20px;
         display: grid;
-        grid-template-columns: repeat(7, 50px);
-        grid-auto-rows: 50px;
+        grid-template-columns: repeat(7, minmax(50px, 1fr));
+        grid-auto-rows: minmax(50px, 1fr);
         justify-items: center;
         align-items: center;
 
@@ -98,10 +98,19 @@ $accent-color-light: #084b81;
             border-radius: 50%;
             font-size: 12px;
         }
+
+        &:nth-child(odd) {
+            justify-self: end;
+        }
+        
+        &:nth-child(even) {
+            justify-self: start;
+        }
     }
 
     &__legend {
-        padding: 40px 0;
+        padding: 40px 20px;
+        max-width: 900px;
         text-align: center;
         margin: 0 auto;
 
@@ -112,9 +121,8 @@ $accent-color-light: #084b81;
      }
 
     &__teammates {
-
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
         gap: 20px;
 
         &-item {
@@ -159,27 +167,14 @@ $accent-color-light: #084b81;
 .today {
     font-weight: bold;
     position: relative;
-    // border: 1px solid $accent-color-dark;
-    // color: $accent-color-dark;
     width: 90%;
     height: 90%;
-    // color:rgb(82, 82, 82);
     font-size: 16px;
-
-    // &::after {
-    //     content: "";
-    //     position: absolute;
-    //     width: 20px;
-    //     bottom: 8px;
-    //     height: 2px;
-    //     background-color: $accent-color-dark;
-    //     border-radius: 15px;
-    // }
 }
 
 .footer {
-    padding: 20px 0;
-    background-color: #eaeaea;
+    padding: 15px 0;
+    border-top: 1px solid rgba(134, 134, 134, 0.472);
 
     &__inner {
         text-align: center;
@@ -193,12 +188,18 @@ $accent-color-light: #084b81;
 
     &__item {
         margin-right: 10px;
+        opacity: 0.7;
+        transition: all .3s;
         &:last-child {
             margin-right: 0;
         }
 
         &-img {
             width: 36px;
+        }
+
+        &:hover {
+            opacity: 1;
         }
     }
 
@@ -207,34 +208,84 @@ $accent-color-light: #084b81;
     }
 }
 
-@media (max-width: 840px) {
+@media (max-width: 870px) {
     .calendar {
+        &__item {
+            &:nth-child(n) {
+                justify-self: center
+            }
+        }
+
         &__teammates {
-            grid-template-columns: repeat(4, 1fr);
+            max-width: 400px;
+            margin: 0 auto;
         }
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 460px) {
+    .header {
+        &__logo{
+            max-width: 160px;
+            &-text {
+                font-size: 32px;
+            }
+        }
+    }
     .calendar {
+        &__grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        &__item {
+            padding: 15px;
+            grid-template-columns: repeat(7, minmax(40px, 1fr));
+            grid-auto-rows: minmax(40px, 1fr);
+            box-shadow: 0px 20px 40px rgba(229, 233, 246, 0.4);
+    
+            &-title {
+                font-size: 20px;
+            }
+
+            &-day-title {
+                font-size: 14px;
+            }
+    
+            &-day {
+                width: 70%;
+                height: 70%;
+                font-size: 12px;
+            }
+        }
+
         &__teammates {
-            grid-template-columns: repeat(3, 1fr);
+            max-width: 300px;
         }
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 350px) {
     .calendar {
-        &__teammates {
-            grid-template-columns: repeat(2, 1fr);
+        &__grid {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         }
-    }
-}
 
-@media (max-width: 335px) {
-    .calendar {
-        &__teammates {
-            grid-template-columns: repeat(1, 1fr);
+        &__item {
+            padding: 10px;
+    
+            &-title {
+                font-size: 18px;
+            }
+
+            &-day-title {
+                font-size: 12px;
+            }
+    
+            &-day {
+                width: 70%;
+                height: 70%;
+                font-size: 10px;
+            }
         }
     }
 }

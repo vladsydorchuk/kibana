@@ -59,7 +59,7 @@ function generateMonthes(data, monthCount) {
                 ${isPast ? 'past-day' : ''} 
                 ${isWeekend ? 'weekend' : ''} 
                 ${isToday ? 'today' : ''}
-                'style="background-color: ${getTeammateColor(data, startDateCalculation, currentDate, isPast, isWeekend, isToday)}"
+                'style="background-color: ${getMateColor(data, startDateCalculation, currentDate, isPast, isWeekend, isToday)}"
                 ><span>${currentDate.getDate()}</span></div>`;
 
             currentDate.setDate(currentDate.getDate() + 1);
@@ -70,9 +70,20 @@ function generateMonthes(data, monthCount) {
     }
 }
 
-let teammateCounter = 0;
-function getTeammateColor(data, startDate, currentDate, isPast, isWeekend, isToday) {
+let mateCounter = 0;
+function getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday) {
     let bgcolor = "transparent";
+
+    let mate = data.teammates[mateCounter % data.teammates.length];
+    let tmpCurrentDate = getDateWithZeroTime(currentDate);
+    // if (mate.dayOffs.indexOf(currentDate))
+    // console.log(currentDate);
+    // let mateDayOffs = mate.dayOffs;
+    // console.log(mateDayOffs);
+
+    if (mate.dayOffs.indexOf(tmpCurrentDate) != -1) {
+        console.log("DAY OFF");
+    }
 
     if (startDate > currentDate) {
         return bgcolor;
@@ -83,7 +94,7 @@ function getTeammateColor(data, startDate, currentDate, isPast, isWeekend, isTod
     }
 
     if (!isWeekend) {
-        bgcolor = data.teammates[teammateCounter % data.teammates.length].backgroundColor;
+        bgcolor = mate.backgroundColor;
     }
 
     if (isPast) {
@@ -94,7 +105,7 @@ function getTeammateColor(data, startDate, currentDate, isPast, isWeekend, isTod
         bgcolor += "7a";
     }
     
-    teammateCounter++;
+    mateCounter++;
     return bgcolor;
 }
 
@@ -110,7 +121,7 @@ function generateLegend(teammates) {
 }
 
 function isWeekendDay(date, dayOffs, workDays) {
-    let d = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T00:00:00`
+    let d = getDateWithZeroTime(date);
     return workDays.indexOf(d) == -1 && (date.getDay() == 6 || date.getDay() == 0 || dayOffs.indexOf(d) != -1);
 }
 
@@ -126,6 +137,9 @@ function getMonthName(date) {
     return  new Intl.DateTimeFormat('en-US', { month: "long" }).format(date);
 }
 
+function getDateWithZeroTime(date) {
+    return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T00:00:00`
+}
 
 
 function getDayName(date) {
