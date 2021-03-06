@@ -2,7 +2,7 @@
     "teammates": [
         {
             "name": "Nastia",
-            "img": "",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Nastia.jpg",
             "color": "#e3e3e3",
             "background-color": "rgb(243, 158, 222)",
             "dayOffs": [
@@ -12,25 +12,25 @@
         },
         {
             "name": "Vlad",
-            "img": "",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Vlad.jpg",
             "color": "#e3e3e3",
             "background-color": "rgb(243, 182, 158)"
         },
         {
             "name": "Artem",
-            "img": "https://github.com/vladsydorchuk/FalconsKibana/blob/master/images/teammates/Artem.jfif",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Artem.jpg",
             "color": "#e3e3e3",
             "background-color": "rgb(206, 243, 158)"
         },
         {
             "name": "Ivan",
-            "img": "",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Ivan.jpg",
             "color": "#e3e3e3",
             "background-color": "rgb(158, 171, 243)"
         },
         {
             "name": "Serhii",
-            "img": "",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Sergii.jpg",
             "color": "#e3e3e3",
             "background-color": "rgb(158, 243, 232)"
         }
