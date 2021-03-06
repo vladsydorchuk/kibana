@@ -152,7 +152,6 @@ body {
 .today {
   font-weight: bold;
   position: relative;
-  border: 1px solid #084b81;
   width: 90%;
   height: 90%;
 }
