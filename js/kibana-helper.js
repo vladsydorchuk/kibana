@@ -1,36 +1,4 @@
-let mateCounter = 0;
-function getMateColor(mates, startDate, currentDate, isDayInSprint, isPast, isWeekend, isToday) {
-    let bgcolor = "transparent";
-
-    let mate = mates[mateCounter % mates.length];
-    let tmpCurrentDate = getDateWithZeroTime(currentDate);
-
-    if (mate.dayOffs.indexOf(tmpCurrentDate) != -1) {
-        ++mateCounter;
-        return getMateColor(mates, startDate, currentDate, isDayInSprint, isPast, isWeekend, isToday);
-    }
-
-    if (isWeekend || startDate > currentDate) {
-        return bgcolor;
-    }
-
-    if (!isWeekend) {
-        bgcolor = mate.backgroundColor;
-    }
-
-    if (isPast || !isDayInSprint) {
-        bgcolor += "42";
-    }
-
-    if (!isPast && !isToday && isDayInSprint) {
-        bgcolor += "d4";
-    }
-    
-    mateCounter++;
-    return bgcolor;
-}
-
-function getMateId(mates) {
+function getMateId(mates, mateCounter) {
     return mates[(mateCounter - 1) % mates.length].id;
 }
 
@@ -101,7 +69,6 @@ function findDuty() {
 }
 
 export {
-    getMateColor,
     getMateId,
     isCurrentSprint, 
     getStartSprintDate,
@@ -111,6 +78,7 @@ export {
     isPastDay,
     isTodayDay,
     getMonthName,
+    getDateWithZeroTime,
     getDayName,
     findDuty
 }

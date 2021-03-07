@@ -1,20 +1,6 @@
 {
     "teammates": [
         {
-            "name": "Nastia",
-            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Nastia.jpg",
-            "backgroundColor": "#f39ede",
-            "dayOffs": [],
-            "id": "nastia"
-        },
-        {
-            "name": "Vlad",
-            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Vlad.jpg",
-            "backgroundColor": "#f3b69e",
-            "dayOffs": [],
-            "id": "vlad"
-        },
-        {
             "name": "Artem",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Artem.jpg",
             "backgroundColor": "#cef39e",
@@ -34,8 +20,24 @@
             "backgroundColor": "#9ef3e8",
             "dayOffs": [],
             "id": "sergii"
+        },
+        {
+            "name": "Vlad",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Vlad.jpg",
+            "backgroundColor": "#f3b69e",
+            "dayOffs": [],
+            "id": "vlad"
+        },
+        {
+            "name": "Nastia",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Nastia.jpg",
+            "backgroundColor": "#f39ede",
+            "dayOffs": [],
+            "id": "nastia"
         }
     ],
+    "monthCount": 2,
+    "startFromMate" : 4,
     "startDate": "2021-03-01T00:00:00",
     "startSprintDate": "2021-02-22T00:00:00",
     "dayOffs": [

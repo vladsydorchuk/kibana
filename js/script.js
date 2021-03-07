@@ -1,5 +1,4 @@
 import {
-    getMateColor,
     getMateId,
     isCurrentSprint, 
     getStartSprintDate,
@@ -9,10 +8,13 @@ import {
     isPastDay,
     isTodayDay,
     getMonthName,
+    getDateWithZeroTime,
     getDayName,
     findDuty
 } from './kibana-helper.js';
 
+let mateCounter = 0;
+let monthCount = 0;
 getDataFromJSON();
 
 function getDataFromJSON() {
@@ -25,7 +27,8 @@ function getDataFromJSON() {
             return response.json();
         })
         .then(json => {
-            generateMonthes(json, 2);
+            init(json);
+            generateMonthes(json, monthCount);
             generateLegend(json.teammates);
             findDuty();
         })
@@ -36,11 +39,16 @@ function getDataFromJSON() {
         return 'Complete';
 }
 
+function init(data) {
+    mateCounter = data.startFromMate ?? 0;
+    monthCount = data.monthCount ?? 2;
+}
+
 function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    // let today = new Date(2021, 2, 8);
+    // let today = new Date(2021, 2, 10);
     let today = new Date();
     let firstDay = startDateCalculation;
 
@@ -79,7 +87,7 @@ function generateMonthes(data, monthCount) {
                 ${isWeekend ? ' weekend' : ''}
                 ${isToday ? ' today' : ''}
                 'style="background-color: ${getMateColor(data.teammates, startDateCalculation, currentDate, isDayInSprint, isPast, isWeekend, isToday)}" 
-                ${isDayInSprint && !isWeekend ? `data-mate-id=${getMateId(data.teammates)}` : ''}>
+                ${isDayInSprint && !isWeekend ? `data-mate-id=${getMateId(data.teammates, mateCounter)}` : ''}>
                 <span>${currentDate.getDate()}</span></div>`;
 
             currentDate.setDate(currentDate.getDate() + 1);
@@ -108,4 +116,36 @@ function generateLegend(mates) {
             <div class="calendar__teammates-color" style="background-color: ${item.backgroundColor};"></div>
         </div>`
     )).join(''));
+}
+
+
+function getMateColor(mates, startDate, currentDate, isDayInSprint, isPast, isWeekend, isToday) {
+    let bgcolor = "transparent";
+
+    let mate = mates[mateCounter % mates.length];
+    let tmpCurrentDate = getDateWithZeroTime(currentDate);
+
+    if (mate.dayOffs.indexOf(tmpCurrentDate) != -1) {
+        ++mateCounter;
+        return getMateColor(mates, startDate, currentDate, isDayInSprint, isPast, isWeekend, isToday);
+    }
+
+    if (isWeekend || startDate > currentDate) {
+        return bgcolor;
+    }
+
+    if (!isWeekend) {
+        bgcolor = mate.backgroundColor;
+    }
+
+    if (isPast || !isDayInSprint) {
+        bgcolor += "42";
+    }
+
+    if (!isPast && !isToday && isDayInSprint) {
+        bgcolor += "d4";
+    }
+    
+    ++mateCounter;
+    return bgcolor;
 }
