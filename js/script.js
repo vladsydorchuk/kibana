@@ -48,7 +48,7 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    // let today = new Date(2021, 2, 10);
+    // let today = new Date(2021, 2,  8);
     let today = new Date();
     let firstDay = startDateCalculation;
 
@@ -86,6 +86,7 @@ function generateMonthes(data, monthCount) {
                 ${isPast ? ' past-day' : ''}
                 ${isWeekend ? ' weekend' : ''}
                 ${isToday ? ' today' : ''}
+                ${isDayInSprint ? ' ' : 'not-in-sprint'}
                 'style="background-color: ${getMateColor(data.teammates, startDateCalculation, currentDate, isDayInSprint, isPast, isWeekend, isToday)}" 
                 ${isDayInSprint && !isWeekend ? `data-mate-id=${getMateId(data.teammates, mateCounter)}` : ''}>
                 <span>${currentDate.getDate()}</span></div>`;

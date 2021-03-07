@@ -3,7 +3,7 @@ function getMateId(mates, mateCounter) {
 }
 
 function isCurrentSprint(startDate, endDate, currentDate) {
-    return currentDate >= startDate && currentDate < endDate;
+    return currentDate >= startDate && currentDate <= endDate;
 }
 
 function getStartSprintDate(today, startSprintDate) {
