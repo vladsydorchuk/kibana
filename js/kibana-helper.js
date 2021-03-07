@@ -54,8 +54,8 @@ function showStartEndSpringDate(start, end) {
     const container = document.querySelector('.calendar__sprint');
     end.setDate(end.getDate() - 1);
 
-    let s = `${start.getDate().toString().padStart(2, '0')}.${start.getMonth().toString().padStart(2, '0')}.${start.getFullYear()}`
-    let e = `${end.getDate().toString().padStart(2, '0')}.${end.getMonth().toString().padStart(2, '0')}.${end.getFullYear()}`
+    let s = `${start.getDate().toString().padStart(2, '0')}.${(start.getMonth() + 1).toString().padStart(2, '0')}.${start.getFullYear()}`
+    let e = `${end.getDate().toString().padStart(2, '0')}.${(end.getMonth() + 1).toString().padStart(2, '0')}.${end.getFullYear()}`
     
     container.insertAdjacentHTML('beforeEnd', `<p class='calendar__sprint-dates'>${s} - ${e}</p>`);
 }
