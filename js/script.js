@@ -1,4 +1,6 @@
 import {
+    getMateColor,
+    getMateId,
     isCurrentSprint, 
     getStartSprintDate,
     showStartEndSpringDate,
@@ -7,7 +9,6 @@ import {
     isPastDay,
     isTodayDay,
     getMonthName,
-    getDateWithZeroTime,
     getDayName,
     findDuty
 } from './kibana-helper.js';
@@ -39,8 +40,8 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    // let today = new Date(2021, 2, 24);
-    let today = new Date();
+    let today = new Date(2021, 2, 7);
+    // let today = new Date();
     let firstDay = startDateCalculation;
 
     let startSprintDate = getStartSprintDate(today, data.startSprintDate);
@@ -72,13 +73,7 @@ function generateMonthes(data, monthCount) {
 
             dates += (currentDate.getMonth() != lastDay.getMonth()) 
             ? `<div class='calendar__item-day'></div>` 
-            : `<div class='calendar__item-day
-                ${isPast ? ' past-day' : ''}
-                ${isWeekend ? ' weekend' : ''}
-                ${isToday ? ' today' : ''}
-                'style="background-color: ${getMateColor(data, startDateCalculation, currentDate, isPast, isWeekend, isToday)}" 
-                ${isCurrentSprint(startSprintDate, endSprintDate, currentDate) && !isWeekend ? `data-mate-id=${getMateId(data.teammates)}` : ''}
-                ><span>${currentDate.getDate()}</span></div>`;
+            : `<div class='calendar__item-day${isPast ? ' past-day' : ''}${isWeekend ? ' weekend' : ''}${isToday ? ' today' : ''}'style="background-color: ${getMateColor(data, startDateCalculation, currentDate, isPast, isWeekend, isToday)}" ${isCurrentSprint(startSprintDate, endSprintDate, currentDate) && !isWeekend ? `data-mate-id=${getMateId(data.teammates)}` : ''}><span>${currentDate.getDate()}</span></div>`;
 
             currentDate.setDate(currentDate.getDate() + 1);
         }
@@ -94,38 +89,6 @@ function generateMonthes(data, monthCount) {
     }
 }
 
-let mateCounter = 0;
-function getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday) {
-    let bgcolor = "transparent";
-
-    let mate = data.teammates[mateCounter % data.teammates.length];
-    let tmpCurrentDate = getDateWithZeroTime(currentDate);
-
-    if (mate.dayOffs.indexOf(tmpCurrentDate) != -1) {
-        ++mateCounter;
-        return getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday);
-    }
-
-    if (isWeekend || startDate > currentDate) {
-        return bgcolor;
-    }
-
-    if (!isWeekend) {
-        bgcolor = mate.backgroundColor;
-    }
-
-    if (isPast) {
-        bgcolor += "42";
-    }
-
-    if (!isPast && !isToday) {
-        bgcolor += "7a";
-    }
-    
-    mateCounter++;
-    return bgcolor;
-}
-
 function generateLegend(mates) {
     const container = document.querySelector('.calendar__teammates');
     container.insertAdjacentHTML('beforeEnd', mates.map(item => (
@@ -138,8 +101,4 @@ function generateLegend(mates) {
             <div class="calendar__teammates-color" style="background-color: ${item.backgroundColor};"></div>
         </div>`
     )).join(''));
-}
-
-function getMateId(mates) {
-    return mates[(mateCounter - 1) % mates.length].id;
 }

@@ -1,3 +1,39 @@
+let mateCounter = 0;
+function getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday) {
+    let bgcolor = "transparent";
+
+    let mate = data.teammates[mateCounter % data.teammates.length];
+    let tmpCurrentDate = getDateWithZeroTime(currentDate);
+
+    if (mate.dayOffs.indexOf(tmpCurrentDate) != -1) {
+        ++mateCounter;
+        return getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday);
+    }
+
+    if (isWeekend || startDate > currentDate) {
+        return bgcolor;
+    }
+
+    if (!isWeekend) {
+        bgcolor = mate.backgroundColor;
+    }
+
+    if (isPast) {
+        bgcolor += "42";
+    }
+
+    if (!isPast && !isToday) {
+        bgcolor += "7a";
+    }
+    
+    mateCounter++;
+    return bgcolor;
+}
+
+function getMateId(mates) {
+    return mates[(mateCounter - 1) % mates.length].id;
+}
+
 function isCurrentSprint(startDate, endDate, currentDate) {
     return currentDate >= startDate && currentDate < endDate;
 }
@@ -17,7 +53,11 @@ function getStartSprintDate(today, startSprintDate) {
 function showStartEndSpringDate(start, end) {
     const container = document.querySelector('.calendar__sprint');
     end.setDate(end.getDate() - 1);
-    container.insertAdjacentHTML('beforeEnd', `<p class='calendar__sprint-dates'>${start.toLocaleDateString()} - ${end.toLocaleDateString()}</p>`);
+
+    let s = `${start.getDate().toString().padStart(2, '0')}.${start.getMonth().toString().padStart(2, '0')}.${start.getFullYear()}`
+    let e = `${end.getDate().toString().padStart(2, '0')}.${end.getMonth().toString().padStart(2, '0')}.${end.getFullYear()}`
+    
+    container.insertAdjacentHTML('beforeEnd', `<p class='calendar__sprint-dates'>${s} - ${e}</p>`);
 }
 
 function getMateHours(id) {
@@ -60,7 +100,9 @@ function findDuty() {
     mateItem.classList.toggle('calendar__teammates-item--duty')
 }
 
-export { 
+export {
+    getMateColor,
+    getMateId,
     isCurrentSprint, 
     getStartSprintDate,
     showStartEndSpringDate,
@@ -69,7 +111,6 @@ export {
     isPastDay,
     isTodayDay,
     getMonthName,
-    getDateWithZeroTime,
     getDayName,
     findDuty
 }
