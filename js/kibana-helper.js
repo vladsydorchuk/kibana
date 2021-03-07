@@ -1,13 +1,13 @@
 let mateCounter = 0;
-function getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday) {
+function getMateColor(mates, startDate, currentDate, isDayInSprint, isPast, isWeekend, isToday) {
     let bgcolor = "transparent";
 
-    let mate = data.teammates[mateCounter % data.teammates.length];
+    let mate = mates[mateCounter % mates.length];
     let tmpCurrentDate = getDateWithZeroTime(currentDate);
 
     if (mate.dayOffs.indexOf(tmpCurrentDate) != -1) {
         ++mateCounter;
-        return getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday);
+        return getMateColor(mates, startDate, currentDate, isDayInSprint, isPast, isWeekend, isToday);
     }
 
     if (isWeekend || startDate > currentDate) {
@@ -18,12 +18,12 @@ function getMateColor(data, startDate, currentDate, isPast, isWeekend, isToday) 
         bgcolor = mate.backgroundColor;
     }
 
-    if (isPast) {
+    if (isPast || !isDayInSprint) {
         bgcolor += "42";
     }
 
-    if (!isPast && !isToday) {
-        bgcolor += "7a";
+    if (!isPast && !isToday && isDayInSprint) {
+        bgcolor += "d4";
     }
     
     mateCounter++;

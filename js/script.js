@@ -40,8 +40,8 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    let today = new Date(2021, 2, 8);
-    // let today = new Date();
+    // let today = new Date(2021, 2, 8);
+    let today = new Date();
     let firstDay = startDateCalculation;
 
     let startSprintDate = getStartSprintDate(today, data.startSprintDate);
@@ -70,10 +70,17 @@ function generateMonthes(data, monthCount) {
             const isPast = isPastDay(today, currentDate);
             const isWeekend = isWeekendDay(currentDate, data.dayOffs, data.workDays);
             const isToday = isTodayDay(today, currentDate);
+            const isDayInSprint = isCurrentSprint(startSprintDate, endSprintDate, currentDate);
 
             dates += (currentDate.getMonth() != lastDay.getMonth()) 
             ? `<div class='calendar__item-day'></div>` 
-            : `<div class='calendar__item-day${isPast ? ' past-day' : ''}${isWeekend ? ' weekend' : ''}${isToday ? ' today' : ''}'style="background-color: ${getMateColor(data, startDateCalculation, currentDate, isPast, isWeekend, isToday)}" ${isCurrentSprint(startSprintDate, endSprintDate, currentDate) && !isWeekend ? `data-mate-id=${getMateId(data.teammates)}` : ''}><span>${currentDate.getDate()}</span></div>`;
+            : `<div class='calendar__item-day
+                ${isPast ? ' past-day' : ''}
+                ${isWeekend ? ' weekend' : ''}
+                ${isToday ? ' today' : ''}
+                'style="background-color: ${getMateColor(data.teammates, startDateCalculation, currentDate, isDayInSprint, isPast, isWeekend, isToday)}" 
+                ${isDayInSprint && !isWeekend ? `data-mate-id=${getMateId(data.teammates)}` : ''}>
+                <span>${currentDate.getDate()}</span></div>`;
 
             currentDate.setDate(currentDate.getDate() + 1);
         }
