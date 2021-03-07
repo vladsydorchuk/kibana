@@ -40,7 +40,7 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    let today = new Date(2021, 2, 7);
+    let today = new Date(2021, 2, 8);
     // let today = new Date();
     let firstDay = startDateCalculation;
 

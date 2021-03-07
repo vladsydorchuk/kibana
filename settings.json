@@ -11,18 +11,14 @@
             "name": "Vlad",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Vlad.jpg",
             "backgroundColor": "#f3b69e",
-            "dayOffs": [
-                "2021-03-17T00:00:00"
-            ],
+            "dayOffs": [],
             "id": "vlad"
         },
         {
             "name": "Artem",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Artem.jpg",
             "backgroundColor": "#cef39e",
-            "dayOffs": [
-                "2021-03-17T00:00:00"
-            ],
+            "dayOffs": [],
             "id": "artem"
         },
         {
