@@ -38,7 +38,9 @@ function isWeekendDay(date, dayOffs, workDays) {
 }
 
 function isPastDay(today, date) {
-    return today > date;
+    let todayWithZeroTime = new Date(getDateWithZeroTime(today));
+    let dateWithZeroTime = new Date(getDateWithZeroTime(date));
+    return todayWithZeroTime > dateWithZeroTime;
 }
 
 function isTodayDay(today, date) {
