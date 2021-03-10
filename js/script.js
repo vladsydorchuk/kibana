@@ -27,9 +27,10 @@ function getDataFromJSON() {
             return response.json();
         })
         .then(json => {
+            console.log(json.mates);
             init(json);
             generateMonthes(json, monthCount);
-            generateLegend(json.teammates);
+            generateLegend(json.mates);
             findDuty();
         })
         .catch(err => {
@@ -55,9 +56,6 @@ function generateMonthes(data, monthCount) {
     let startSprintDate = getStartSprintDate(today, data.startSprintDate);
     let endSprintDate = new Date(startSprintDate.getFullYear(), startSprintDate.getMonth(), startSprintDate.getDate() + 14)
     showStartEndSpringDate(startSprintDate, endSprintDate);
-
-    let activeMates = data.teammates.filter((mate) => mate.isActive == true);
-    console.log(activeMates);
 
     for(let i = 0; i < monthCount; i++) {
         firstDay = new Date(firstDay.getFullYear(), firstDay.getMonth(), 1);
@@ -90,8 +88,8 @@ function generateMonthes(data, monthCount) {
                 ${isWeekend ? ' weekend' : ''}
                 ${isToday ? ' today' : ''}
                 ${isDayInSprint ? ' ' : 'not-in-sprint'}
-                'style="background-color: ${getMateColor(data.teammates, startDateCalculation, currentDate, isDayInSprint, isPast, isWeekend, isToday)}" 
-                ${isDayInSprint && !isWeekend ? `data-mate-id=${getMateId(data.teammates, mateCounter)}` : ''}>
+                'style="background-color: ${getMateColor(data.mates, startDateCalculation, currentDate, isDayInSprint, isPast, isWeekend, isToday)}" 
+                ${isDayInSprint && !isWeekend ? `data-mate-id=${getMateId(data.mates, mateCounter)}` : ''}>
                 <span>${currentDate.getDate()}</span></div>`;
 
             currentDate.setDate(currentDate.getDate() + 1);
