@@ -5,35 +5,50 @@
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Artem.jpg",
             "backgroundColor": "#cef39e",
             "dayOffs": [],
-            "id": "artem"
+            "id": "artem",
+            "startDate": "",
+            "endDate": "",
+            "isActive": true
         },
         {
             "name": "Ivan",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Ivan.jpg",
             "backgroundColor": "#9eabf3",
             "dayOffs": [],
-            "id": "ivan"
+            "id": "ivan",
+            "startDate": "",
+            "endDate": "",
+            "isActive": true
         },
         {
             "name": "Sergii",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Sergii.jpg",
             "backgroundColor": "#9ef3e8",
             "dayOffs": [],
-            "id": "sergii"
+            "id": "sergii",
+            "startDate": "",
+            "endDate": "",
+            "isActive": true
         },
         {
             "name": "Vlad",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Vlad.jpg",
             "backgroundColor": "#f3b69e",
             "dayOffs": [],
-            "id": "vlad"
+            "id": "vlad",
+            "startDate": "",
+            "endDate": "",
+            "isActive": true
         },
         {
             "name": "Nastia",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Nastia.jpg",
             "backgroundColor": "#f39ede",
             "dayOffs": [],
-            "id": "nastia"
+            "id": "nastia",
+            "startDate": "",
+            "endDate": "",
+            "isActive": false
         }
     ],
     "monthCount": 2,
