@@ -44,15 +44,6 @@
             "id": "nastia",
             "startDate": "",
             "endDate": ""
-        },
-        {
-            "name": "No name",
-            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Default.jpg",
-            "backgroundColor": "#f3f39e",
-            "dayOffs": [],
-            "id": "noname",
-            "startDate": "2021-03-29T00:00:00",
-            "endDate": ""
         }
     ],
     "monthCount": 2,
