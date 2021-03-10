@@ -1,5 +1,5 @@
 {
-    "teammates": [
+    "mates": [
         {
             "name": "Artem",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Artem.jpg",
@@ -7,8 +7,8 @@
             "dayOffs": [],
             "id": "artem",
             "startDate": "",
-            "endDate": "",
-            "isActive": true
+            "endDate": ""
+            // "isActive": true
         },
         {
             "name": "Ivan",
@@ -17,8 +17,8 @@
             "dayOffs": [],
             "id": "ivan",
             "startDate": "",
-            "endDate": "",
-            "isActive": true
+            "endDate": ""
+            // "isActive": true
         },
         {
             "name": "Sergii",
@@ -27,8 +27,8 @@
             "dayOffs": [],
             "id": "sergii",
             "startDate": "",
-            "endDate": "",
-            "isActive": true
+            "endDate": ""
+            // "isActive": true
         },
         {
             "name": "Vlad",
@@ -37,8 +37,8 @@
             "dayOffs": [],
             "id": "vlad",
             "startDate": "",
-            "endDate": "",
-            "isActive": true
+            "endDate": ""
+            // "isActive": true
         },
         {
             "name": "Nastia",
@@ -47,8 +47,18 @@
             "dayOffs": [],
             "id": "nastia",
             "startDate": "",
-            "endDate": "",
-            "isActive": false
+            "endDate": ""
+            // "isActive": true
+        },
+        {
+            "name": "No name",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Nastia.jpg",
+            "backgroundColor": "#f39ede",
+            "dayOffs": [],
+            "id": "noname",
+            "startDate": "",
+            "endDate": ""
+            // "isActive": true
         }
     ],
     "monthCount": 2,
