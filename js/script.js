@@ -56,6 +56,9 @@ function generateMonthes(data, monthCount) {
     let endSprintDate = new Date(startSprintDate.getFullYear(), startSprintDate.getMonth(), startSprintDate.getDate() + 14)
     showStartEndSpringDate(startSprintDate, endSprintDate);
 
+    let activeMates = data.teammates.filter((mate) => mate.isActive == true);
+    console.log(activeMates);
+
     for(let i = 0; i < monthCount; i++) {
         firstDay = new Date(firstDay.getFullYear(), firstDay.getMonth(), 1);
         var lastDay = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 0);
