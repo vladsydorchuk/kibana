@@ -8,7 +8,6 @@
             "id": "artem",
             "startDate": "",
             "endDate": ""
-            // "isActive": true
         },
         {
             "name": "Ivan",
@@ -18,7 +17,6 @@
             "id": "ivan",
             "startDate": "",
             "endDate": ""
-            // "isActive": true
         },
         {
             "name": "Sergii",
@@ -28,7 +26,6 @@
             "id": "sergii",
             "startDate": "",
             "endDate": ""
-            // "isActive": true
         },
         {
             "name": "Vlad",
@@ -38,7 +35,6 @@
             "id": "vlad",
             "startDate": "",
             "endDate": ""
-            // "isActive": true
         },
         {
             "name": "Nastia",
@@ -48,7 +44,6 @@
             "id": "nastia",
             "startDate": "",
             "endDate": ""
-            // "isActive": true
         },
         {
             "name": "No name",
@@ -56,9 +51,8 @@
             "backgroundColor": "#f39ede",
             "dayOffs": [],
             "id": "noname",
-            "startDate": "",
+            "startDate": "2021-03-29T00:00:00",
             "endDate": ""
-            // "isActive": true
         }
     ],
     "monthCount": 2,
