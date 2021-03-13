@@ -30,7 +30,7 @@ function getDataFromJSON() {
             console.log(json.mates);
             init(json);
             generateMonthes(json, monthCount);
-            generateLegend(json.mates);
+            generateLegend(json.mates, json.currentSprint);
             findDuty();
         })
         .catch(err => {
@@ -60,8 +60,8 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    let today = new Date(2021, 2,  15);
-    // let today = new Date();
+    // let today = new Date(2021, 2,  15);
+    let today = new Date();
     let firstDay = startDateCalculation;
 
     data.currentSprint.startDate = getStartSprintDate(today, data.startSprintDate);
