@@ -1,6 +1,6 @@
 import {
     getMateId,
-    isCurrentSprint, 
+    isCurrentSprint,
     getStartSprintDate,
     showStartEndSpringDate,
     getMateHours,
@@ -37,8 +37,19 @@ function getDataFromJSON() {
             console.error(err);
         });
 
-        return 'Complete';
+    return 'Complete';
 }
+
+// #testing
+// import { getData } from "../data.js"
+// fromFile();
+// function fromFile() {
+//     var json = getData();
+//     init(json);
+//     generateMonthes(json, monthCount);
+//     generateLegend(json.mates, json.currentSprint);
+//     findDuty();
+// }
 
 function init(data) {
     mateCounter = data.startFromMate ?? 0;
@@ -49,20 +60,20 @@ function generateMonthes(data, monthCount) {
     const container = document.querySelector('.calendar__grid');
     const startDateCalculation = new Date(data.startDate);
 
-    // let today = new Date(2021, 2,  18);
-    let today = new Date();
+    let today = new Date(2021, 2,  15);
+    // let today = new Date();
     let firstDay = startDateCalculation;
 
-    let startSprintDate = getStartSprintDate(today, data.startSprintDate);
-    let endSprintDate = new Date(startSprintDate.getFullYear(), startSprintDate.getMonth(), startSprintDate.getDate() + 14)
-    showStartEndSpringDate(startSprintDate, endSprintDate);
+    data.currentSprint.startDate = getStartSprintDate(today, data.startSprintDate);
+    data.currentSprint.endDate = new Date(data.currentSprint.startDate.getFullYear(), data.currentSprint.startDate.getMonth(), data.currentSprint.startDate.getDate() + 14);
+    showStartEndSpringDate(data.currentSprint.startDate, data.currentSprint.endDate);
 
-    for(let i = 0; i < monthCount; i++) {
+    for (let i = 0; i < monthCount; i++) {
         firstDay = new Date(firstDay.getFullYear(), firstDay.getMonth(), 1);
         var lastDay = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 0);
 
         firstDay.setDate(firstDay.getDate() - firstDay.getDay() + 1);
-        
+
         let monthTitle = ``
         let daysTitle = ``;
         let dates = ``;
@@ -79,11 +90,11 @@ function generateMonthes(data, monthCount) {
             const isPast = isPastDay(today, currentDate);
             const isWeekend = isWeekendDay(currentDate, data.dayOffs, data.workDays);
             const isToday = isTodayDay(today, currentDate);
-            const isDayInSprint = isCurrentSprint(startSprintDate, endSprintDate, currentDate);
+            const isDayInSprint = isCurrentSprint(data.currentSprint.startDate, data.currentSprint.endDate, currentDate);
 
-            dates += (currentDate.getMonth() != lastDay.getMonth()) 
-            ? `<div class='calendar__item-day'></div>` 
-            : `<div class='calendar__item-day
+            dates += (currentDate.getMonth() != lastDay.getMonth())
+                ? `<div class='calendar__item-day'></div>`
+                : `<div class='calendar__item-day
                 ${isPast ? ' past-day' : ''}
                 ${isWeekend ? ' weekend' : ''}
                 ${isToday ? ' today' : ''}
@@ -96,7 +107,7 @@ function generateMonthes(data, monthCount) {
         }
 
         firstDay = new Date(lastDay.getFullYear(), lastDay.getMonth() + 1, 1);
-        
+
         if (today > firstDay) {
             monthCount++;
             continue;
@@ -106,9 +117,21 @@ function generateMonthes(data, monthCount) {
     }
 }
 
-function generateLegend(mates) {
+function generateLegend(mates, currentSprint) {
+    let matesInCurrentSprint = mates.filter(mate => {
+        let mateStart = mate.startDate == "" ? new Date("2000-01-01T00:00:00") : new Date(mate.startDate);
+        let mateEnd = mate.endDate == "" ? new Date("2300-01-01T00:00:00") : new Date(mate.endDate);
+
+        if (currentSprint.startDate > mateEnd ||
+            currentSprint.endDate < mateStart) {
+            return false;
+        }
+
+        return true;
+    });
+
     const container = document.querySelector('.calendar__teammates');
-    container.insertAdjacentHTML('beforeEnd', mates.map(item => (
+    container.insertAdjacentHTML('beforeEnd', matesInCurrentSprint.map(item => (
         `<div data-mate-id='${item.id}' class="calendar__teammates-item">
             <img class="calendar__teammates-img" src="${item.img}" alt="${item.name}">
             <div class="calendar__teammates-info">
@@ -120,14 +143,30 @@ function generateLegend(mates) {
     )).join(''));
 }
 
+function isMateAvaliableForCurrentDate(mate, currentDate) {
+    let tmpCurrentDate = getDateWithZeroTime(currentDate);
+    let mateStartDate = new Date(mate.startDate);
+    let mateEndDate = new Date(mate.endDate);
+    // console.log(mateStartDate < currentDate);
+    // console.log(mateStartDate);
+    // console.log(currentDate);
+    // console.log('-----')
+
+    if (mate.dayOffs.indexOf(tmpCurrentDate) != -1 ||
+        currentDate < mateStartDate ||
+        currentDate > mateEndDate) {
+        return true;
+    }
+
+    return false;
+}
 
 function getMateColor(mates, startDate, currentDate, isDayInSprint, isPast, isWeekend, isToday) {
     let bgcolor = "transparent";
 
     let mate = mates[mateCounter % mates.length];
-    let tmpCurrentDate = getDateWithZeroTime(currentDate);
 
-    if (mate.dayOffs.indexOf(tmpCurrentDate) != -1) {
+    if (isMateAvaliableForCurrentDate(mate, currentDate)) {
         ++mateCounter;
         return getMateColor(mates, startDate, currentDate, isDayInSprint, isPast, isWeekend, isToday);
     }
@@ -147,7 +186,7 @@ function getMateColor(mates, startDate, currentDate, isDayInSprint, isPast, isWe
     if (!isPast && !isToday && isDayInSprint) {
         bgcolor += "d4";
     }
-    
+
     ++mateCounter;
     return bgcolor;
 }

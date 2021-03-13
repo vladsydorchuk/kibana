@@ -44,10 +44,23 @@
             "id": "nastia",
             "startDate": "",
             "endDate": ""
+        },
+        {
+            "name": "No name",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Default.jpg",
+            "backgroundColor": "#f3f39e",
+            "dayOffs": [],
+            "id": "noname",
+            "startDate": "2021-04-05T00:00:00",
+            "endDate": ""
         }
     ],
+    "currentSprint": {
+        "startDate": "",
+        "endDate": ""
+    },
     "monthCount": 2,
-    "startFromMate" : 4,
+    "startFromMate": 4,
     "startDate": "2021-03-01T00:00:00",
     "startSprintDate": "2021-02-22T00:00:00",
     "dayOffs": [
