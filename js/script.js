@@ -27,7 +27,6 @@ function getDataFromJSON() {
             return response.json();
         })
         .then(json => {
-            console.log(json.mates);
             init(json);
             generateMonthes(json, monthCount);
             generateLegend(json.mates, json.currentSprint);
