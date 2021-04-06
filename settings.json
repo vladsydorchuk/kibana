@@ -46,12 +46,12 @@
             "endDate": ""
         },
         {
-            "name": "No name",
-            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Default.jpg",
+            "name": "Dima",
+            "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Dima.jpg",
             "backgroundColor": "#f3f39e",
             "dayOffs": [],
-            "id": "noname",
-            "startDate": "2021-04-19T00:00:00",
+            "id": "dima",
+            "startDate": "2021-05-03T00:00:00",
             "endDate": ""
         }
     ],
