@@ -22,7 +22,13 @@
             "name": "Sergii",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Sergii.jpg",
             "backgroundColor": "#9ef3e8",
-            "dayOffs": [],
+            "dayOffs": [
+                "2021-04-12T00:00:00",
+                "2021-04-13T00:00:00",
+                "2021-04-14T00:00:00",
+                "2021-04-15T00:00:00",
+                "2021-04-16T00:00:00"
+            ],
             "id": "sergii",
             "startDate": "",
             "endDate": ""
