@@ -37,7 +37,11 @@
             "name": "Vlad",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Vlad.jpg",
             "backgroundColor": "#f3b69e",
-            "dayOffs": [],
+            "dayOffs": [
+                "2021-05-05T00:00:00",
+                "2021-05-06T00:00:00",
+                "2021-05-07T00:00:00"
+            ],
             "id": "vlad",
             "startDate": "",
             "endDate": ""
