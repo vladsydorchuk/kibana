@@ -13,7 +13,11 @@
             "name": "Ivan",
             "img": "https://raw.githubusercontent.com/vladsydorchuk/FalconsKibana/master/images/teammates/Ivan.jpg",
             "backgroundColor": "#9eabf3",
-            "dayOffs": [],
+            "dayOffs": [
+                "2021-04-26T00:00:00",
+                "2021-04-27T00:00:00",
+                "2021-04-28T00:00:00",
+            ],
             "id": "ivan",
             "startDate": "",
             "endDate": ""
